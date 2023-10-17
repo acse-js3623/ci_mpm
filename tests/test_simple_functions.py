@@ -2,6 +2,7 @@ import pytest
 import math
 from simple_functions import sin, my_sum, factorial
 
+
 class TestSimpleFunctions(object):
     '''Class to test our simple functions are working correctly'''
 
