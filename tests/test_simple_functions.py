@@ -1,7 +1,6 @@
 import pytest
 import math
-from simple_functions import my_sum, factorial, sin
-
+from simple_functions import sin, my_sum, factorial
 
 class TestSimpleFunctions(object):
     '''Class to test our simple functions are working correctly'''
@@ -25,13 +24,9 @@ class TestSimpleFunctions(object):
         answer = factorial(number)
         assert answer == expected
 
-    @pytest.mark.parametrize("x, expected, tolerance", [
-        (0, 0.0, 1e-9),
-        (math.pi / 2, 1.0, 1e-9),
-        (math.pi, 0.0, 1e-9),
-        (3 * math.pi / 2, -1.0, 1e-9),
-        (2 * math.pi, 0.0, 1e-9),
-    ])
-    def test_sin(self, x, expected, tolerance):
-        result = sin(x)
-        assert math.isclose(result, expected, rel_tol=tolerance)
+    def test_sin_identity(self):
+        for angle in range(0, 360, 10):
+            radians = math.radians(angle)
+            result = sin(radians)
+            expected = math.sin(radians)
+            assert math.isclose(result, expected, rel_tol=1e-9)
