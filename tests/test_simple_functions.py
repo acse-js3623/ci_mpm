@@ -25,13 +25,13 @@ class TestSimpleFunctions(object):
         answer = factorial(number)
         assert answer == expected
 
-    @pytest.mark.parametrize("x, expected", [
-        (0, 0.0),
-        (math.pi / 2, 1.0),
-        (math.pi, 0.0),
-        (3 * math.pi / 2, -1.0),
-        (2 * math.pi, 0.0),
+    @pytest.mark.parametrize("x, expected, tolerance", [
+        (0, 0.0, 1e-9),
+        (math.pi / 2, 1.0, 1e-9),
+        (math.pi, 0.0, 1e-9),
+        (3 * math.pi / 2, -1.0, 1e-9),
+        (2 * math.pi, 0.0, 1e-9),
     ])
-    def test_sin(self, x, expected):
+    def test_sin(self, x, expected, tolerance):
         result = sin(x)
-        assert math.isclose(result, expected, rel_tol=1e-9)
+        assert math.isclose(result, expected, rel_tol=tolerance)
